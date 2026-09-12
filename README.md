@@ -1,103 +1,92 @@
+<div align="center">
+
 # RayNote
 
-A native macOS floating Markdown notebook. Keep notes a click away in the menu bar, pin the window above other apps, and store your notes as ordinary Markdown files.
+**A little room to think. Right on your Mac.**
 
-RayNote is an early preview, inspired by Raycast Notes and independently developed. It is not affiliated with Raycast and does not claim exact visual parity.
+Native Markdown notes · Menu-bar access · Plain local files
 
-## Features
+[Get started](#get-started) · [Shortcuts](docs/shortcuts.md) · [Contributing](CONTRIBUTING.md) · [MIT license](LICENSE)
 
-- No account, subscription, or application-imposed note count or storage quota. Available disk space and memory remain practical limits.
-- Native AppKit text editing with undo/redo, selection, spell checking, and find/replace.
-- Live Markdown headings, emphasis, lists, checkboxes, code, quotes, rules, tables, and local image previews, plus source and reading views.
-- Markdown import/export with portable local image attachments; paste PNG/TIFF images directly into a note.
-- Menu-bar access, right-click actions, a Keep on Top pin, configurable global shortcut, and System/Light/Dark appearance.
-- Atomic local saves, recovery drafts for failed writes, preservation of detected outside edits, and recoverable note deletion.
+</div>
 
-## Build and install
+<p align="center">
+  <img src="docs/images/raynote-dark.png" width="48%" alt="RayNote in dark appearance, showing headings, a checklist, a quote, and a Markdown table">
+  <img src="docs/images/raynote-light.png" width="48%" alt="The same RayNote sample note in light appearance">
+</p>
 
-Requires macOS 14 or later and an Xcode or Command Line Tools installation providing Swift 6 or later. There are no external Swift package dependencies.
+<p align="center"><sub>Dark and light appearances. Native app views rendered with sample notes.</sub></p>
 
-From the repository directory:
+RayNote is a small floating notebook for ideas, lists, and the next thing you want to remember. Open it from the menu bar, pin it beside your work, and write in Markdown. Your notes stay in ordinary files on your Mac.
+
+## Made for your workflow
+
+- **One click away.** Open and hide notes from the menu bar. Right-click for actions, or use a shortcut of your choice.
+- **Markdown that feels native.** Headings, emphasis, lists, checkboxes, code, quotes, tables, and local images—with native selection, find/replace, and undo.
+- **A window that stays put.** Resize it once. Switching notes keeps the same window size and restores each note's selection and scroll position.
+- **Your files, your notes.** No account, subscription, or app-imposed storage quota. Disk space and memory are the practical limits.
+- **Images included.** Paste images into a note; import and export Markdown with portable local attachments.
+- **Light, dark, or automatic.** Choose an appearance in Settings and use the pin to keep the window above other apps.
+
+## Get started
+
+**macOS 14+ · Swift 6+ to build · No external Swift package dependencies**
+
+Install Xcode or Command Line Tools with Swift 6 or later, then:
 
 ```sh
-swift --version
+git clone https://github.com/codestrongestx/raynote.git
+cd raynote
 ./scripts/build-app.sh
 open dist/RayNote.app
 ```
 
-To install, quit RayNote and copy `dist/RayNote.app` into Applications. The built app runs without the source tree or developer tools. It has a Dock icon and also appears in the menu bar.
+To install, quit RayNote and copy **`dist/RayNote.app`** into **Applications**. The built app runs without the source folder or developer tools.
 
-The build script generates the app icon and signs the bundle locally with an ad-hoc signature. This is not a Developer ID signed or notarized public binary release.
+> **Early preview:** builds are locally ad-hoc signed. A Developer ID signed and notarized download is not available yet.
 
-## Use
+## A few useful controls
 
-Click the menu-bar note icon to show or hide the window. Right-click it, or Control-click, for note actions and Settings. The header pin toggles Keep on Top. Right-click the header or editor for additional actions; the editor retains native Cut/Copy/Paste options.
-
-Change the theme in **Settings → Appearance**: System, Light, or Dark. The window keeps the size you choose across note switches and app restarts. Drag an edge to resize it; **View → Fit Window to Note** fits the current note once when requested. Settings controls the global shortcut. **Actions → Keyboard Shortcuts** shows the current bindings.
-
-| Shortcut | Action |
+| Action | Control |
 | --- | --- |
-| Control–Option–N | Show or hide the floating window globally |
-| Command–N | New note |
-| Command–P | Search title and contents / switch note |
-| Command–K | Actions |
-| Command–/ | Complete keyboard shortcut reference |
-| Command–F | Find within the current note |
-| Command–G / Command–Shift–G | Next / previous match |
-| Command–Option–F | Find and replace |
-| Command–B / Command–I | Markdown bold / italic |
-| Command–E / Command–L | Inline code / link |
-| Command–Option–1 / 2 / 3 | Heading level |
-| Command–Option–C | Fenced code block |
-| Command–Shift–S / B | Strikethrough / quote |
-| Command–Shift–7 / 8 / 9 | Ordered list / bullets / checklist |
-| Command–Return | Toggle task completion, or create a task |
-| Command–Shift–F | Show / hide formatting bar |
-| Command–Shift–M | Switch styled Markdown and raw source |
-| Command–Shift–P | Toggle native reading view |
-| Tab / Shift–Tab | Indent / outdent selected lines |
-| Up / Down / Return | Choose a result in note search |
-| Escape | Hide the window |
+| Show or hide notes | Click the menu-bar icon, or `⌃⌥N` |
+| Create a note | `⌘N` |
+| Search your notes | `⌘P` |
+| Find in the current note | `⌘F` |
+| Bold / italic / inline code | `⌘B` / `⌘I` / `⌘E` |
+| Keep the window on top | Click the pin |
+| Change the theme | Settings → Appearance |
 
-Markdown delimiters are hidden on inactive lines and shown while editing. The underlying text remains Markdown. Return continues lists; Return on an empty list item exits it. Click a table row or local image preview to edit its source. Escape dismisses the find bar before hiding the window.
+[All shortcuts →](docs/shortcuts.md)
 
-## Your data
+Markdown syntax appears on the line you are editing and is hidden elsewhere. Click a table row or local image to edit its source. For raw Markdown, use **View → Toggle Markdown Source**; **Reading View** offers a separate reading layout.
 
-Notes are UTF-8 `.md` files under:
+## Local by design
 
-```text
-~/Library/Application Support/RayNote/Notes
-```
+Your notes live in `~/Library/Application Support/RayNote/Notes`. The library includes local attachments, recoverable deleted notes, and recovery drafts when a save fails. Updating the app does not move your notes.
 
-Images are stored in `Notes/Attachments`. Deleted notes move to `Notes/Recently Deleted` and can be restored from Actions. Recovery drafts, when needed, live in the sibling `Notes.recovery` directory. Back up the entire RayNote directory, including attachments and recovery drafts.
+Back up the full RayNote data directory. There is no cloud sync or application-level encryption. Remote images in reading view make requests to their image hosts.
 
-Updating or moving the app does not move the note library. There is no cloud synchronization or application-level encryption. Reading view can load remote HTTP(S) images referenced by a note; those requests go to the image host. Import/export does not download remote images.
+[Storage details and Markdown limitations →](docs/storage-and-markdown.md)
 
 ## Development
 
 ```sh
 swift test
-./scripts/build-app.sh
-```
-
-For UI testing with an isolated library and preferences:
-
-```sh
 ./scripts/build-qa-app.sh
 open .build/RayNoteQA.app
 ```
 
-The QA app stores notes under `.build/qa-library`. Build output, QA data, and local scan reports are excluded from version control. See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution and verification guidance.
+The QA app uses a separate library and preferences. To regenerate the README's native UI images:
 
-## Known limitations
+```sh
+./scripts/render-readme-images.sh
+```
 
-- This is a Markdown subset, not complete CommonMark conformance. Multiline inline-code spans are not supported in the live editor.
-- Remote images appear as source in the live editor and load in reading view. Inline images render as alternative text in paragraphs.
-- Large libraries load into memory; very large notes and libraries may affect responsiveness.
-- Detected external changes are preserved before saving, but concurrent writes from other applications are not transactionally coordinated.
-- Global shortcuts depend on macOS registration and may conflict with other apps. Choose another binding in Settings when necessary.
-- Exact Raycast appearance across macOS versions and desktop backgrounds is not guaranteed.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for checks and contribution guidance.
 
 ## License
 
-[MIT](LICENSE). Copyright (c) 2026 codestrongestx.
+[MIT](LICENSE) © 2026 codestrongestx.
+
+Inspired by Raycast Notes. Independently developed and not affiliated with Raycast.
