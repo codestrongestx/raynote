@@ -1,0 +1,13 @@
+.build/
+dist/
+.DS_Store
+
+# Local credentials and audit output
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.mobileprovision
+gitleaks-report.*
