@@ -25,6 +25,7 @@ import SwiftUI
         let panel = NSPanel(contentRect: NSRect(x: 0, y: 0, width: 480, height: 360), styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView], backing: .buffered, defer: false)
         delegate.window = panel
         panel.isReleasedWhenClosed = false
+        panel.level = .floating
         panel.titleVisibility = .hidden; panel.titlebarAppearsTransparent = true
         panel.standardWindowButton(.miniaturizeButton)?.isEnabled = false
         panel.standardWindowButton(.zoomButton)?.isEnabled = false
@@ -85,18 +86,32 @@ import SwiftUI
                 label("RAYNOTE  /  macOS", x: 64, y: 996, size: 20, color: muted, weight: .semibold)
                 let title: String, subtitle: String
                 switch t {
-                case ..<2: title = "Meet RayNote."; subtitle = "A little room to think. Right on your Mac."
-                case ..<8.5: title = "Write in Markdown."; subtitle = "Headings, lists, and the next good idea."
-                case ..<11.5: title = "Make things happen."; subtitle = "Turn your thoughts into next steps."
+                case ..<2: title = "Your floating notepad."; subtitle = "RayNote. Markdown notes above your work."
+                case ..<8.5: title = "Keep notes on top."; subtitle = "Pin your Markdown pad above other windows."
+                case ..<11.5: title = "Work. Check. Keep going."; subtitle = "Your checklist stays in sight while you work."
                 case ..<15: title = "Make it feel at home."; subtitle = "Dark, light, or follow your Mac."
                 case ..<18: title = "Keep your space."; subtitle = "Switch notes. Your window stays put."
-                default: title = "Your notes. Your files."; subtitle = "Native macOS. Open source. MIT licensed."
+                default: title = "Float above your work."; subtitle = "Native macOS. Local Markdown. MIT licensed."
                 }
                 label(title, x: 64, y: 897, size: 54, color: .white, weight: .bold)
                 label(subtitle, x: 66, y: 853, size: 27, color: muted)
                 let enter = min(1, t / 0.65)
                 let eased = 1 - pow(1 - enter, 3)
-                let rect = NSRect(x: 120, y: 190 - (1 - eased) * 30, width: 840, height: 630)
+                // An explicitly illustrative workspace provides context for the native floating panel.
+                let workspace = NSRect(x: 60, y: 255, width: 900, height: 530)
+                NSColor(srgbRed: 0.17, green: 0.21, blue: 0.27, alpha: 1).setFill()
+                NSBezierPath(roundedRect: workspace, xRadius: 16, yRadius: 16).fill()
+                label("SAMPLE WORKSPACE", x: 84, y: 720, size: 19, color: muted, weight: .semibold)
+                label("Project brief", x: 84, y: 653, size: 28, color: .white, weight: .semibold, width: 240)
+                label("A small idea.", x: 84, y: 570, size: 22, color: muted, width: 185)
+                label("A useful tool.", x: 84, y: 536, size: 22, color: muted, width: 185)
+                label("Make room", x: 84, y: 458, size: 22, color: muted, width: 185)
+                label("for your work.", x: 84, y: 424, size: 22, color: muted, width: 185)
+                for line in 0..<3 {
+                    NSColor.white.withAlphaComponent(0.10).setFill()
+                    NSBezierPath(roundedRect: NSRect(x: 84, y: 370 - line * 22, width: 140 - line * 20, height: 6), xRadius: 3, yRadius: 3).fill()
+                }
+                let rect = NSRect(x: 285, y: 190 - (1 - eased) * 30, width: 735, height: 551.25)
                 NSGraphicsContext.saveGraphicsState()
                 let shadow = NSShadow(); shadow.shadowColor = NSColor.black.withAlphaComponent(0.35); shadow.shadowBlurRadius = 35; shadow.shadowOffset = NSSize(width: 0, height: -14); shadow.set()
                 NSColor.black.withAlphaComponent(0.3).setFill()
@@ -105,8 +120,8 @@ import SwiftUI
                 let transition = min(1, max(0, (t - transitionStart) / 0.45))
                 if let previous, transition < 1 { previous.draw(in: rect, from: .zero, operation: .sourceOver, fraction: eased) }
                 cached?.draw(in: rect, from: .zero, operation: .sourceOver, fraction: eased * (previous == nil ? 1 : transition))
-                label(t >= 18 ? "github.com/codestrongestx/raynote" : "Plain Markdown. Local files. No account.", x: 60, y: 104, size: 28, color: .white, weight: .medium, centered: true)
-                label("RayNote", x: 60, y: 59, size: 20, color: muted, centered: true)
+                label(t >= 18 ? "github.com/codestrongestx/raynote" : "A floating Markdown notepad for macOS.", x: 60, y: 104, size: 28, color: .white, weight: .medium, centered: true)
+                label("Native RayNote UI · Sample workspace", x: 60, y: 59, size: 17, color: muted, centered: true)
                 NSColor.white.withAlphaComponent(0.13).setFill()
                 NSBezierPath(roundedRect: NSRect(x: 64, y: 35, width: 952, height: 3), xRadius: 1.5, yRadius: 1.5).fill()
                 NSColor(srgbRed: 0.5, green: 0.73, blue: 1, alpha: 1).setFill()

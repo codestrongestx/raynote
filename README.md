@@ -2,31 +2,36 @@
 
 # RayNote
 
-**A little room to think. Right on your Mac.**
+**A floating Markdown notepad for macOS.**
 
-Native Markdown notes · Menu-bar access · Plain local files
+Always on top when pinned · Instant shortcut access · Plain local Markdown files
 
 [Get started](#get-started) · [Shortcuts](docs/shortcuts.md) · [Contributing](CONTRIBUTING.md) · [MIT license](LICENSE)
 
 </div>
 
 <p align="center">
+  <img src="docs/images/raynote-floating.png" width="100%" alt="RayNote floating above a sample workspace, with its pin enabled">
+</p>
+
+<p align="center">
   <img src="docs/images/raynote-dark.png" width="48%" alt="RayNote in dark appearance, showing headings, a checklist, a quote, and a Markdown table">
   <img src="docs/images/raynote-light.png" width="48%" alt="The same RayNote sample note in light appearance">
 </p>
 
-<p align="center"><sub>Dark and light appearances. Native app views rendered with sample notes.</sub></p>
+<p align="center"><sub>Native app views with sample notes. The floating preview is composed over an illustrative workspace.</sub></p>
 
-RayNote is a small floating notebook for ideas, lists, and the next thing you want to remember. Open it from the menu bar, pin it beside your work, and write in Markdown. Your notes stay in ordinary files on your Mac.
+RayNote floats above your other windows so you can keep notes in sight while you work. Click the pin to keep it on top, or unpin it to use it like a regular window. Summon or hide it with `⌃⌥N` or the menu-bar icon, and capture ideas without losing your place. Your notes stay in ordinary Markdown files on your Mac.
 
 ## Made for your workflow
 
+- **Float above your work.** Keep a checklist, reference, or scratchpad visible over other apps with the pin control.
 - **One click away.** Open and hide notes from the menu bar. Right-click for actions, or use a shortcut of your choice.
 - **Markdown that feels native.** Headings, emphasis, lists, checkboxes, code, quotes, tables, and local images—with native selection, find/replace, and undo.
 - **A window that stays put.** Resize it once. Switching notes keeps the same window size and restores each note's selection and scroll position.
 - **Your files, your notes.** No account, subscription, or app-imposed storage quota. Disk space and memory are the practical limits.
 - **Images included.** Paste images into a note; import and export Markdown with portable local attachments.
-- **Light, dark, or automatic.** Choose an appearance in Settings and use the pin to keep the window above other apps.
+- **Light, dark, or automatic.** Choose an appearance in Settings.
 
 ## Get started
 
